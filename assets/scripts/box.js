@@ -1,4 +1,4 @@
-import { getAllNeighbors, openAllBoxes } from "./matrix";
+import { getAllNeighbors, openAllBoxes } from "matrix";
 
 const appElem = document.getElementById("app");
 
@@ -21,7 +21,7 @@ class Box {
     let bombCount = 0;
 
     allNeighbors.forEach((neighbor) => {
-      if (neighbor === 1 || neighbor.isBomb) {
+      if (neighbor === 1 || neighbor.isBomb) {  //для чего здесь neighbor === 1
         bombCount++;
       }
     });

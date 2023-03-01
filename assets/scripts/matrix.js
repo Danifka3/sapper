@@ -1,8 +1,9 @@
-import { createBox } from "./box";
-import { generateRandom } from "./getRandom";
+import { createBox } from "box";
+import { generateRandom } from "getRandom";
 
 export let matrix = [];
 
+//Присваивает 1 местам, где будут стоять бомбы
 function addBombs(bombCount) {
   let currentBombCount = bombCount;
 
@@ -22,17 +23,18 @@ function addBombs(bombCount) {
   }
 }
 
+//Получает элементы вокруг заданной клетки
 export function getAllNeighbors(coordinates) {
   const { x, y } = coordinates;
 
-  // const n_1 = matrix[y - 1]?.[x];
-  // const n_2 = matrix[y - 1]?.[x + 1];
-  // const n_3 = matrix[y]?.[x + 1];
-  // const n_4 = matrix[y + 1]?.[x + 1];
-  // const n_5 = matrix[y + 1]?.[x];
-  // const n_6 = matrix[y + 1]?.[x - 1];
-  // const n_7 = matrix[y]?.[x - 1];
-  // const n_8 = matrix[y - 1]?.[x - 1];
+  const n_1 = matrix[y - 1]?.[x];
+  const n_2 = matrix[y - 1]?.[x + 1];
+  const n_3 = matrix[y]?.[x + 1];
+  const n_4 = matrix[y + 1]?.[x + 1];
+  const n_5 = matrix[y + 1]?.[x];
+  const n_6 = matrix[y + 1]?.[x - 1];
+  const n_7 = matrix[y]?.[x - 1];
+  const n_8 = matrix[y - 1]?.[x - 1];
   // Нужно заменить это на цикл с наполнением массива!!!
 
   return [n_1, n_2, n_3, n_4, n_5, n_6, n_7, n_8].filter(
@@ -40,6 +42,7 @@ export function getAllNeighbors(coordinates) {
   );
 }
 
+//Открывает все бомбы
 export function openAllBoxes() {
   matrix.forEach((matrixLine) => {
     matrixLine.forEach((box) => {
@@ -50,7 +53,8 @@ export function openAllBoxes() {
   });
 }
 
-export function createMatrix(width = 8, height = 8, bombCount = 10) {
+//Наполняет матрицу боксами
+export function createMatrix(width = 16, height = 16, bombCount = 40) {
   matrix = Array.from({ length: height }, () =>
       Array.from({ length: width }, () => 0)
   );
