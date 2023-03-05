@@ -1,2 +1,0 @@
-# sapper
-VK internship contest

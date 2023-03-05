@@ -1,16 +1,18 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sapper</title>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+    <link href="./src/styles.scss" rel="stylesheet" />
+  </head>
 
-    <link href="assets/styles/main.css" rel="stylesheet"/>
-</head>
-<body>
+  <body>
+    <div class="menu">
+      <span id="bomb-count">00</span>
+      <button id="start-btn"></button>
+      <span id="time-list">00:00</span>
+    </div>
     <div id="app"></div>
-    <script src="assets/scripts/app.js"></script>
-</body>
+    <script src="src/index.js"></script>
+  </body>
 </html>

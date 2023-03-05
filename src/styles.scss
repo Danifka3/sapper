@@ -1,0 +1,144 @@
+$boxSize: 15px;
+
+* {
+  //box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.menu {
+  display: flex;
+  width: calc(#{$boxSize} * 17.7);
+  height: calc(#{$boxSize} * 5);
+  background-color: gray;
+  border: 2px solid black
+}
+
+#app {
+  border: 15px solid gray;
+  width: calc(#{$boxSize} * 16);
+  height: calc(#{$boxSize} * 16);
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+
+  .box {
+    width: $boxSize;
+    height: $boxSize;
+    background-image: url('../sprites.png');
+    background-position: -18px -52px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.initial {
+      background-image: url('../sprites.png');
+      background-position: -1px -52px;
+      cursor: pointer;
+    }
+
+    &.bomb-count-1 {
+      background-position: -1px -69px;
+      &.initial {
+        background-position: -1px -52px;
+        cursor: pointer;
+      }
+    }
+
+    &.bomb-count-2 {
+      background-position: -18px -69px;
+      &.initial {
+        background-position: -1px -52px;
+        cursor: pointer;
+      }
+    }
+
+    &.bomb-count-3 {
+      background-position: -35px -69px;
+      &.initial {
+        background-position: -1px -52px;
+        cursor: pointer;
+      }
+    }
+
+    &.bomb-count-4 {
+      background-position: -52px -69px;
+      &.initial {
+        background-position: -1px -52px;
+        cursor: pointer;
+      }
+    }
+
+    &.bomb-count-5 {
+      background-position: -69px -69px;
+      &.initial {
+        background-position: -1px -52px;
+        cursor: pointer;
+      }
+    }
+
+    &.bomb-count-6 {
+      background-position: -86px -69px;
+      &.initial {
+        background-position: -1px -52px;
+        cursor: pointer;
+      }
+    }
+
+    &.bomb-count-7 {
+      background-position: -103px -69px;
+      &.initial {
+        background-position: -1px -52px;
+        cursor: pointer;
+      }
+    }
+
+    &.bomb-count-8 {
+      background-position: -120px -69px;
+      &.initial {
+        background-position: -1px -52px;
+        cursor: pointer;
+      }
+    }
+
+    &.bomb {
+      background-position: -86px -52px;
+
+      &.box.bomb--red {
+        background-position: -103px -52px;
+      }
+    
+      &.bomb--defused {
+        background-position: -120px -52px;
+      }
+      
+      &.initial {
+        background-position: -1px -52px;
+        cursor: pointer;
+      }
+      &.question {
+        background-position: -52px -52px;
+        &.question--clicked {
+          background-position: -69px -52px;
+          }
+        }
+      &.flag {
+        background-position: -35px -52px;
+      }
+    }
+  
+  &.question {
+    background-position: -52px -52px;
+    &.question--clicked {
+      background-position: -69px -52px;
+      }
+    }
+    
+    &.flag {
+      background-position: -35px -52px;
+    }
+  }
+}
