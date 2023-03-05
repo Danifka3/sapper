@@ -49,7 +49,7 @@ export function clearField(bombCount = 40) {
       matrix[i][j].isOpenned = false;
       matrix[i][j].isFlagged = false;
       matrix[i][j].boxElem.classList.contains('flag') ? matrix[i][j].boxElem.classList.remove('flag') : "";
-      matrix[i][j].boxElem.classList.contains('question') ? matrix[i][j].classList.remove('question') : "";
+      matrix[i][j].boxElem.classList.contains('question') ? matrix[i][j].boxElem.classList.remove('question') : "";
       matrix[i][j].boxElem.classList.contains('bomb-count-1') ? matrix[i][j].boxElem.classList.remove('bomb-count-1') : "";
       matrix[i][j].boxElem.classList.contains('bomb-count-2') ? matrix[i][j].boxElem.classList.remove('bomb-count-2') : "";
       matrix[i][j].boxElem.classList.contains('bomb-count-3') ? matrix[i][j].boxElem.classList.remove('bomb-count-3') : "";

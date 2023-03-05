@@ -47,15 +47,19 @@ class Box {
       if (!this.boxElem.classList.contains('flag')){
       this.boxElem.classList.add('click');
       startBtn.classList.add('scared');
+      if (this.boxElem.classList.contains('question'))
+        this.boxElem.classList.add('question--clicked');
       }
     });
     this.boxElem.addEventListener("mouseup", (event) => {
       this.boxElem.classList.remove('click');
       startBtn.classList.remove('scared');
+      this.boxElem.classList.remove('question--clicked');
     });
     this.boxElem.addEventListener("mouseout", (event) => {
       this.boxElem.classList.remove('click');
       startBtn.classList.remove('scared');
+      this.boxElem.classList.remove('question--clicked');
     });
     appElem.appendChild(boxElem);
   }

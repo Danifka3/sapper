@@ -184,15 +184,18 @@ var Box = /*#__PURE__*/function () {
         if (!_this.boxElem.classList.contains('flag')) {
           _this.boxElem.classList.add('click');
           _.startBtn.classList.add('scared');
+          if (_this.boxElem.classList.contains('question')) _this.boxElem.classList.add('question--clicked');
         }
       });
       this.boxElem.addEventListener("mouseup", function (event) {
         _this.boxElem.classList.remove('click');
         _.startBtn.classList.remove('scared');
+        _this.boxElem.classList.remove('question--clicked');
       });
       this.boxElem.addEventListener("mouseout", function (event) {
         _this.boxElem.classList.remove('click');
         _.startBtn.classList.remove('scared');
+        _this.boxElem.classList.remove('question--clicked');
       });
       appElem.appendChild(boxElem);
     }
@@ -363,7 +366,7 @@ function clearField() {
       matrix[i][j].isOpenned = false;
       matrix[i][j].isFlagged = false;
       matrix[i][j].boxElem.classList.contains('flag') ? matrix[i][j].boxElem.classList.remove('flag') : "";
-      matrix[i][j].boxElem.classList.contains('question') ? matrix[i][j].classList.remove('question') : "";
+      matrix[i][j].boxElem.classList.contains('question') ? matrix[i][j].boxElem.classList.remove('question') : "";
       matrix[i][j].boxElem.classList.contains('bomb-count-1') ? matrix[i][j].boxElem.classList.remove('bomb-count-1') : "";
       matrix[i][j].boxElem.classList.contains('bomb-count-2') ? matrix[i][j].boxElem.classList.remove('bomb-count-2') : "";
       matrix[i][j].boxElem.classList.contains('bomb-count-3') ? matrix[i][j].boxElem.classList.remove('bomb-count-3') : "";
@@ -568,7 +571,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58274" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60478" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
