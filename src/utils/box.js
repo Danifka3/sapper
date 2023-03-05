@@ -1,4 +1,4 @@
-import {growFlag, decreaseFlag, growTime, startBtn} from '..';
+import {growFlag, decreaseFlag, growTime, startBtn, flagsCount} from '..';
 import { getAllNeighbors, openAllBombs, addBombs, setBoxType } from "./matrix";
 
 localStorage.setItem("gameCondition", '-1');
@@ -99,7 +99,7 @@ class Box {
         startBtn.classList.add('wasted');
         localStorage.gameCondition = -1;
       }
-      if (win >= 40){
+      if (win === 40 && flagsCount === 0){
         openAllBombs(this.coordinates);
         startBtn.classList.add('win');
         win = 0;
@@ -132,7 +132,7 @@ class Box {
         this.boxElem.classList.remove("question");
         this.isFlagged = !isFlagged;
       }
-      if (win >= 40){
+      if (win >= 40 && flagsCount === 0){
         openAllBombs(this.coordinates);
         startBtn.classList.add('win');
         win = 0;

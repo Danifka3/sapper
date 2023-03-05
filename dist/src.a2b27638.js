@@ -229,7 +229,7 @@ var Box = /*#__PURE__*/function () {
           _.startBtn.classList.add('wasted');
           localStorage.gameCondition = -1;
         }
-        if (win >= 40) {
+        if (win === 40 && _.flagsCount === 0) {
           (0, _matrix.openAllBombs)(this.coordinates);
           _.startBtn.classList.add('win');
           win = 0;
@@ -259,7 +259,7 @@ var Box = /*#__PURE__*/function () {
           this.boxElem.classList.remove("question");
           this.isFlagged = !isFlagged;
         }
-        if (win >= 40) {
+        if (win >= 40 && _.flagsCount === 0) {
           (0, _matrix.openAllBombs)(this.coordinates);
           _.startBtn.classList.add('win');
           win = 0;
@@ -438,6 +438,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.decreaseFlag = decreaseFlag;
+exports.flagsCount = void 0;
 exports.growFlag = growFlag;
 exports.growTime = growTime;
 exports.startBtn = void 0;
@@ -452,11 +453,12 @@ var time2 = document.querySelector("#time10");
 var time3 = document.querySelector("#time100");
 var time;
 var flagsCount;
+exports.flagsCount = flagsCount;
 openGame();
 startBtn.addEventListener("click", function (event) {
   clearInterval(_box.timer);
   time = 0;
-  flagsCount = 40;
+  exports.flagsCount = flagsCount = 40;
   for (var i = 0; i < 10; i++) {
     bcount1.classList.remove("bcount".concat(i));
     bcount2.classList.remove("bcount".concat(i));
@@ -507,7 +509,7 @@ function openGame() {
 }
 function decreaseFlag() {
   if (localStorage.getItem("gameCondition") !== "-1") {
-    var current = --flagsCount;
+    var current = exports.flagsCount = --flagsCount;
     if (current > -1) {
       if (current < 10) {
         bcount1.classList.remove("bcount1");
@@ -528,7 +530,7 @@ function decreaseFlag() {
 }
 function growFlag() {
   if (localStorage.getItem("gameCondition") !== "-1") {
-    var current = ++flagsCount;
+    var current = exports.flagsCount = ++flagsCount;
     if (current > -1) {
       if (current < 10) {
         for (var i = 0; i < 10; i++) {
@@ -571,7 +573,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60653" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60857" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

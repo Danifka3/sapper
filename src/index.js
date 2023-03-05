@@ -11,7 +11,7 @@ const time2 = document.querySelector("#time10");
 const time3 = document.querySelector("#time100");
 
 let time;
-let flagsCount;
+export let flagsCount;
 
 
 openGame();
