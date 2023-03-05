@@ -186,6 +186,10 @@ $boxSize: 15px;
       &.initial {
         background-position: -1px -52px;
         cursor: pointer;
+        &.click {
+          background-position: -18px -52px;
+          cursor: pointer;
+        }
       }
       &.question {
         background-position: -52px -52px;
