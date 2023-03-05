@@ -1,36 +1,14 @@
-import { growFlag, decreaseFlag } from "..";
+import { growFlag, decreaseFlag, growTime} from "..";
 import { getAllNeighbors, openAllBombs, addBombs, setBoxType } from "./matrix";
 
-localStorage.setItem("gameCondition", 0);
+localStorage.setItem("gameCondition", '-1');
 const appElem = document.getElementById("app");
+export let timer;
 
 class Box {
-  //конструктор бомбы
   constructor(isBomb, coordinates) {
     this.isBomb = isBomb;
     this.coordinates = coordinates;
-  }
-
-  //когда открываются поля, их все еще перекрывают флажки
-  setFlag(isFlagged) {
-    if (localStorage.getItem("gameCondition") !== "-1") {
-      if (!isFlagged && this.boxElem.classList.contains("initial")) {
-        this.boxElem.classList.add("flag");
-        this.isFlagged = !isFlagged;
-        decreaseFlag();
-      } else if (
-        isFlagged &&
-        !this.boxElem.classList.contains("question") &&
-        this.boxElem.classList.contains("initial")
-      ) {
-        this.boxElem.classList.add("question");
-        this.boxElem.classList.remove("flag");
-        growFlag();
-      } else {
-        this.boxElem.classList.remove("question");
-        this.isFlagged = !isFlagged;
-      }
-    }
   }
 
   open() {
@@ -52,38 +30,6 @@ class Box {
     this.isOpenned = true;
   }
 
-  onBoxClick(allowOpenNumber = false) {
-    if (localStorage.getItem("gameCondition") === "0") {
-      addBombs(this.coordinates);
-      setBoxType();
-      localStorage.gameCondition = 1;
-    }
-    if (localStorage.getItem("gameCondition") !== "-1") {
-      if (!this.value && !this.isOpenned && !this.isBomb) {
-        this.open();
-        const allNeighbors = getAllNeighbors(this.coordinates);
-        allNeighbors.forEach((neighbor) => {
-          if (!neighbor.isOpenned) {
-            neighbor.onBoxClick(true);
-          }
-        });
-      } else if (
-        (!this.isBomb &&
-          this.value &&
-          allowOpenNumber &&
-          !this.boxElem.classList.contains("flag")) ||
-        (typeof this.value === "number" &&
-          !this.isBomb &&
-          !this.boxElem.classList.contains("flag"))
-      ) {
-        this.open();
-      } else if (this.isBomb && !this.boxElem.classList.contains("flag")) {
-        openAllBombs();
-        localStorage.gameCondition = -1;
-      }
-    }
-  }
-
   createBoxOnArea() {
     const boxElem = document.createElement("div");
     boxElem.classList.add("box");
@@ -95,15 +41,77 @@ class Box {
       e.preventDefault();
       this.setFlag(this.isFlagged);
     });
+
+    this.boxElem.addEventListener("mousedown", (event) => {
+      if (!this.boxElem.classList.contains('flag')){
+      this.boxElem.classList.add('click');
+      }
+    });
+    this.boxElem.addEventListener("mouseup", (event) => {
+      this.boxElem.classList.remove('click');
+    });
+    this.boxElem.addEventListener("mouseout", (event) => {
+      this.boxElem.classList.remove('click');
+    });
     appElem.appendChild(boxElem);
   }
 
-  setBoxValue(value) {
-    this.value = value;
+  onBoxClick(allowOpenNumber = false) {
+    if (localStorage.getItem("gameCondition") === "0") {
+      addBombs(this.coordinates);
+      clearInterval(timer);
+      timer = setInterval(growTime, 1000);
+      setBoxType();
+      localStorage.gameCondition = 1;
+    }
+    if (localStorage.getItem("gameCondition") !== "-1") {
+      if ((!this.value || this.value === '0') && !this.isOpenned && !this.isBomb) {
+        this.open();
+        const allNeighbors = getAllNeighbors(this.coordinates);
+        allNeighbors.forEach((neighbor) => {
+          if (!neighbor.isOpenned) {
+            neighbor.onBoxClick(true);
+          }
+        });
+      } else if (
+          (!this.isBomb &&
+              this.value && this.value !== '0' &&
+              allowOpenNumber &&
+              !this.boxElem.classList.contains("flag")) ||
+          (typeof this.value === "number" && this.value !== '0' &&
+              !this.isBomb &&
+              !this.boxElem.classList.contains("flag"))
+      ) {
+        this.open();
+      } else if (this.isBomb && !this.boxElem.classList.contains("flag")) {
+        openAllBombs(this.coordinates);
+        localStorage.gameCondition = -1;
+      }
+    }
+  }
+
+  setFlag(isFlagged) {
+    if (localStorage.getItem("gameCondition") !== "-1") {
+      if (!isFlagged && this.boxElem.classList.contains("initial")) {
+        this.boxElem.classList.add("flag");
+        this.isFlagged = !isFlagged;
+        decreaseFlag();
+      } else if (
+          isFlagged &&
+          !this.boxElem.classList.contains("question") &&
+          this.boxElem.classList.contains("initial")
+      ) {
+        this.boxElem.classList.add("question");
+        this.boxElem.classList.remove("flag");
+        growFlag();
+      } else {
+        this.boxElem.classList.remove("question");
+        this.isFlagged = !isFlagged;
+      }
+    }
   }
 }
 
-//создает бокс
 
 export function createBox(isBomb, coordinates) {
   const newBox = new Box(isBomb, coordinates);

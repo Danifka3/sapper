@@ -6,15 +6,80 @@ $boxSize: 15px;
 }
 
 .menu {
+  box-sizing: border-box;
   display: flex;
-  width: calc(#{$boxSize} * 17.7);
-  height: calc(#{$boxSize} * 5);
-  background-color: gray;
-  border: 2px solid black
+  flex: 1;
+  width: calc(#{$boxSize} * 18);
+  height: calc(#{$boxSize} * 4);
+  background-color: #cccccc;
+  border: 5px solid #ada7a7;
+  justify-content: space-between;
+  padding: 15px 20px;
+}
+
+.start-btn {
+  width: 25px;
+  height: 25px;
+  background-image: url('../sprites.png');
+  background-position: -1px -25px;
+  &.smile--clicked {
+    background-position: -28px -25px;
+  }
+  &.win {
+    background-position: -82px -25px;
+  }
+  &.wasted {
+    background-position: -109px -25px;
+  }
+
+  &.clicked {
+    background-position: -55px -25px;
+  }
+}
+
+.counter {
+  box-sizing: border-box;
+  display: flex;
+}
+.bcount {
+  width: 14px;
+  height: 24px;
+  background-image: url('../sprites.png');
+  background-position: -125px 0px;
+  &.bcount0 {
+    background-position: -125px 0px;
+  }
+  &.bcount1 {
+    background-position: 0px 0px;
+  }
+  &.bcount2 {
+    background-position: -13px 0px;
+  }
+  &.bcount3 {
+    background-position: -28px 0px;
+  }
+  &.bcount4 {
+    background-position: -42px 0px;
+  }
+  &.bcount5 {
+    background-position: -55px 0px;
+  }
+  &.bcount6 {
+    background-position: -71px 0px;
+  }
+  &.bcount7 {
+    background-position: -84px 0px;
+  }
+  &.bcount8 {
+    background-position: -97px 0px;
+  }
+  &.bcount9 {
+    background-position: -111px 0px;
+  }
 }
 
 #app {
-  border: 15px solid gray;
+  border: 15px solid #ada7a7;
   width: calc(#{$boxSize} * 16);
   height: calc(#{$boxSize} * 16);
   position: relative;
@@ -35,9 +100,12 @@ $boxSize: 15px;
     justify-content: center;
 
     &.initial {
-      background-image: url('../sprites.png');
       background-position: -1px -52px;
       cursor: pointer;
+      &.click {
+        background-position: -18px -52px;
+        cursor: pointer;
+      }
     }
 
     &.bomb-count-1 {
@@ -107,7 +175,7 @@ $boxSize: 15px;
     &.bomb {
       background-position: -86px -52px;
 
-      &.box.bomb--red {
+      &.bomb--red {
         background-position: -103px -52px;
       }
     
