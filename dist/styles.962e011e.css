@@ -1,0 +1,193 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.menu {
+  box-sizing: border-box;
+  display: flex;
+  flex: 1;
+  width: calc(15px * 18);
+  height: calc(15px * 4);
+  background-color: #cccccc;
+  border: 5px solid #ada7a7;
+  justify-content: space-between;
+  padding: 15px 20px;
+}
+
+.start-btn {
+  width: 25px;
+  height: 25px;
+  background-image: url("/sprites.ce5d06db.png");
+  background-position: -1px -25px;
+}
+.start-btn.smile--clicked {
+  background-position: -28px -25px;
+}
+.start-btn.win {
+  background-position: -82px -25px;
+}
+.start-btn.wasted {
+  background-position: -109px -25px;
+}
+.start-btn.scared {
+  background-position: -55px -25px;
+}
+
+.counter {
+  box-sizing: border-box;
+  display: flex;
+}
+
+.bcount {
+  width: 14px;
+  height: 24px;
+  background-image: url("/sprites.ce5d06db.png");
+  background-position: -125px 0px;
+}
+.bcount.bcount0 {
+  background-position: -125px 0px;
+}
+.bcount.bcount1 {
+  background-position: 1px 0px;
+}
+.bcount.bcount2 {
+  background-position: -14px 0px;
+}
+.bcount.bcount3 {
+  background-position: -28px 0px;
+}
+.bcount.bcount4 {
+  background-position: -42px 0px;
+}
+.bcount.bcount5 {
+  background-position: -56px 0px;
+}
+.bcount.bcount6 {
+  background-position: -70px 0px;
+}
+.bcount.bcount7 {
+  background-position: -84px 0px;
+}
+.bcount.bcount8 {
+  background-position: -98px 0px;
+}
+.bcount.bcount9 {
+  background-position: -112px 0px;
+}
+
+#app {
+  border: 15px solid #ada7a7;
+  width: calc(15px * 16);
+  height: calc(15px * 16);
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+#app .box {
+  width: 15px;
+  height: 15px;
+  background-image: url("/sprites.ce5d06db.png");
+  background-position: -18px -52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#app .box.initial {
+  background-position: -1px -52px;
+  cursor: pointer;
+}
+#app .box.initial.click {
+  background-position: -18px -52px;
+  cursor: pointer;
+}
+#app .box.bomb-count-1 {
+  background-position: -1px -69px;
+}
+#app .box.bomb-count-1.initial {
+  background-position: -1px -52px;
+  cursor: pointer;
+}
+#app .box.bomb-count-2 {
+  background-position: -18px -69px;
+}
+#app .box.bomb-count-2.initial {
+  background-position: -1px -52px;
+  cursor: pointer;
+}
+#app .box.bomb-count-3 {
+  background-position: -35px -69px;
+}
+#app .box.bomb-count-3.initial {
+  background-position: -1px -52px;
+  cursor: pointer;
+}
+#app .box.bomb-count-4 {
+  background-position: -52px -69px;
+}
+#app .box.bomb-count-4.initial {
+  background-position: -1px -52px;
+  cursor: pointer;
+}
+#app .box.bomb-count-5 {
+  background-position: -69px -69px;
+}
+#app .box.bomb-count-5.initial {
+  background-position: -1px -52px;
+  cursor: pointer;
+}
+#app .box.bomb-count-6 {
+  background-position: -86px -69px;
+}
+#app .box.bomb-count-6.initial {
+  background-position: -1px -52px;
+  cursor: pointer;
+}
+#app .box.bomb-count-7 {
+  background-position: -103px -69px;
+}
+#app .box.bomb-count-7.initial {
+  background-position: -1px -52px;
+  cursor: pointer;
+}
+#app .box.bomb-count-8 {
+  background-position: -120px -69px;
+}
+#app .box.bomb-count-8.initial {
+  background-position: -1px -52px;
+  cursor: pointer;
+}
+#app .box.bomb {
+  background-position: -86px -52px;
+}
+#app .box.bomb.bomb--red {
+  background-position: -103px -52px;
+}
+#app .box.bomb.bomb--defused {
+  background-position: -120px -52px;
+}
+#app .box.bomb.initial {
+  background-position: -1px -52px;
+  cursor: pointer;
+}
+#app .box.bomb.question {
+  background-position: -52px -52px;
+}
+#app .box.bomb.question.question--clicked {
+  background-position: -69px -52px;
+}
+#app .box.bomb.flag {
+  background-position: -35px -52px;
+}
+#app .box.question {
+  background-position: -52px -52px;
+}
+#app .box.question.question--clicked {
+  background-position: -69px -52px;
+}
+#app .box.flag {
+  background-position: -35px -52px;
+}
+
+/*# sourceMappingURL=/styles.962e011e.css.map */

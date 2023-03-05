@@ -1,9 +1,10 @@
-import { growFlag, decreaseFlag, growTime} from "..";
+import {growFlag, decreaseFlag, growTime, startBtn} from '..';
 import { getAllNeighbors, openAllBombs, addBombs, setBoxType } from "./matrix";
 
 localStorage.setItem("gameCondition", '-1');
 const appElem = document.getElementById("app");
 export let timer;
+let win = 0;
 
 class Box {
   constructor(isBomb, coordinates) {
@@ -45,13 +46,16 @@ class Box {
     this.boxElem.addEventListener("mousedown", (event) => {
       if (!this.boxElem.classList.contains('flag')){
       this.boxElem.classList.add('click');
+      startBtn.classList.add('scared');
       }
     });
     this.boxElem.addEventListener("mouseup", (event) => {
       this.boxElem.classList.remove('click');
+      startBtn.classList.remove('scared');
     });
     this.boxElem.addEventListener("mouseout", (event) => {
       this.boxElem.classList.remove('click');
+      startBtn.classList.remove('scared');
     });
     appElem.appendChild(boxElem);
   }
@@ -65,7 +69,10 @@ class Box {
       localStorage.gameCondition = 1;
     }
     if (localStorage.getItem("gameCondition") !== "-1") {
-      if ((!this.value || this.value === '0') && !this.isOpenned && !this.isBomb) {
+      if (allowOpenNumber){
+        this.boxElem.classList.remove('flag');
+      }
+      if ((!this.value || this.value === '0') && !this.isOpenned && !this.isBomb && !this.boxElem.classList.contains('flag')) {
         this.open();
         const allNeighbors = getAllNeighbors(this.coordinates);
         allNeighbors.forEach((neighbor) => {
@@ -85,6 +92,13 @@ class Box {
         this.open();
       } else if (this.isBomb && !this.boxElem.classList.contains("flag")) {
         openAllBombs(this.coordinates);
+        startBtn.classList.add('wasted');
+        localStorage.gameCondition = -1;
+      }
+      if (win >= 40){
+        openAllBombs(this.coordinates);
+        startBtn.classList.add('win');
+        win = 0;
         localStorage.gameCondition = -1;
       }
     }
@@ -96,6 +110,9 @@ class Box {
         this.boxElem.classList.add("flag");
         this.isFlagged = !isFlagged;
         decreaseFlag();
+        if (this.isBomb === true){
+          win++;
+        }
       } else if (
           isFlagged &&
           !this.boxElem.classList.contains("question") &&
@@ -104,9 +121,18 @@ class Box {
         this.boxElem.classList.add("question");
         this.boxElem.classList.remove("flag");
         growFlag();
+        if (this.isBomb === true){
+          win--;
+        }
       } else {
         this.boxElem.classList.remove("question");
         this.isFlagged = !isFlagged;
+      }
+      if (win >= 40){
+        openAllBombs(this.coordinates);
+        startBtn.classList.add('win');
+        win = 0;
+        localStorage.gameCondition = -1;
       }
     }
   }

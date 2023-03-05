@@ -1,9 +1,7 @@
 import {createMatrix, clearField} from './utils/matrix';
 import {timer} from './utils/box';
 
-const timeList = document.querySelector("#time-list");
 export const startBtn = document.querySelector("#start-btn");
-const bombList = document.querySelector("#bomb-count");
 
 const bcount1 = document.querySelector("#bcount1");
 const bcount2 = document.querySelector("#bcount2");
@@ -20,7 +18,7 @@ openGame();
 
 startBtn.addEventListener("click", (event) => {
   clearInterval(timer);
-  time = 90;
+  time = 0;
   flagsCount = 40;
   for (let i = 0; i < 10; i++){
     bcount1.classList.remove(`bcount${i}`);
@@ -39,6 +37,8 @@ startBtn.addEventListener("click", (event) => {
 });
 
 startBtn.addEventListener("mousedown", (event) => {
+  startBtn.classList.remove('wasted');
+  startBtn.classList.remove('win');
   startBtn.classList.add('smile--clicked');
 });
 startBtn.addEventListener("mouseup", (event) => {
